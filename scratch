@@ -1,27 +1,22 @@
-Sure, let's break it down in a more casual way:
+Redux-persist:
 
-Why We Need It:
+- We can store some information regarding the token renewal flow and persist the state in Redux using redux-persist.
 
-Ever had your app lose state when you refresh the page? That's annoying, right? This blog helps you avoid that by explaining how to persist state in Redux using redux-persist.
-Getting Started with Redux Toolkit:
-
-Redux Toolkit makes managing Redux state a breeze. You just set it up like this:
-jsx
-Copy code
+Redux setup:
+```
 // store.js
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './reducers';
 
 const store = configureStore({
   reducer: rootReducer,
-  // Other Redux Toolkit stuff
 });
 
 export default store;
-Bring in redux-persist:
-To make your state stick around, toss in redux-persist. It plays nice with Redux Toolkit. Check this out:
-jsx
-Copy code
+```
+
+To add `redux-persist`:
+```
 // store.js
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -43,10 +38,10 @@ const store = configureStore({
 const persistor = persistStore(store);
 
 export { store, persistor };
-Customizing Your Setup:
-You can tweak things. For example, choose where to store your data and what parts of the state to keep. It's like customizing your ride:
-jsx
-Copy code
+```
+
+You can also customize what to persist
+```
 // store.js
 import storage from 'redux-persist/lib/storage/session';
 // ...
@@ -58,16 +53,10 @@ const persistConfig = {
 };
 
 // ...
-Async Actions Play Nice:
-If you're dealing with async stuff, like fetching data, redux-persist has your back. It won't mess with your async game.
-jsx
-Copy code
-// Example of handling async actions with Redux Toolkit and Thunk
-// ... (similar to the formal summary)
-Putting It All Together:
-The blog wraps it up with examples. You plug it into your app like this:
-jsx
-Copy code
+```
+
+To add async things, you can use `PersistGate` component to show loading spinner etc
+```
 // App.js
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -86,9 +75,9 @@ const App = () => {
 };
 
 export default App;
-Pros and Cons:
+```
 
-The good stuff: It's easy and lets you keep your state. The trade-offs: a bit more complexity and you need to be careful with security.
-Wrap Up:
+It is easy and lets you keep your state, but the tradeoff is that it is a bit more added complexity and you need to be careful with security (if we are storing user data etc in token renewal flow)
+I think it also gets complicated if we are storing state in the backend and merging, but we are not doing that so I don't think that is applicable.
 
-The blog ends by summarizing everything and gives you the green light to dive in and make your app's state stick around. No more losing data on a refresh!
+
