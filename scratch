@@ -80,4 +80,6 @@ export default App;
 It is easy and lets you keep your state, but the tradeoff is that it is a bit more added complexity and you need to be careful with security (if we are storing user data etc in token renewal flow)
 I think it also gets complicated if we are storing state in the backend and merging or resyncing the state, but we are not doing that so I don't think that is applicable for us.
 
-
+My recommendation is:
+-- If we are storing only the step state, we can use this, but it might be needlessly complicated
+-- If we are storing additional data (like user etc), might be worth talking to security team to get approval to store the data
