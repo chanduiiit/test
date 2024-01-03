@@ -38,6 +38,9 @@ const store = configureStore({
 const persistor = persistStore(store);
 
 export { store, persistor };
+// We need to create a config -- basically tells redux-persist library what to store and where to store (local storage preferable)
+// mostly just copied all of this from the redux-persist documentation. The gist of this change is we use a persistReducer and persistStore instead of regular store and reducer
+
 ```
 
 You can also customize what to persist
@@ -56,6 +59,7 @@ const persistConfig = {
 ```
 
 To add async things, you can use `PersistGate` component to show loading spinner etc
+// if we are loading state and merging state between local and backend, then we need to use this
 ```
 // App.js
 import React from 'react';
